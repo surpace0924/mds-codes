@@ -1,0 +1,17 @@
+# begin end weight
+ε A 0
+ε T 1
+ε C 2
+ε G 3
+A T 1
+A C 2
+A G 3
+T A 0
+T C 2
+T G 3
+C A 0
+C T 1
+C G 3
+G A 0
+G T 1
+G C 2
