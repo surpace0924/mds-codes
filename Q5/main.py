@@ -35,10 +35,8 @@ for sample_num in [10, 100]:
         est_vars.append(est_var)
 
         # 母平均と標本平均の差を求める
-        diff_mean = abs(mean - est_mean)
-        diff_var = abs(var - est_var)
-        diff_mean_sum += diff_mean
-        diff_var_sum += diff_var
+        diff_mean_sum += (mean - est_mean)**2
+        diff_var_sum += (var - est_var)**2
 
         # 平均の95%信頼区間の計算
         # 統計量tを求める
@@ -49,7 +47,7 @@ for sample_num in [10, 100]:
         interval_mean_min = est_mean - t_upper * np.sqrt(est_var/len(s))
         interval_mean_max = est_mean + t_upper * np.sqrt(est_var/len(s))
 
-        # カイ二乗分布の上側2.5%点と上側2.5%点を求める（自由度はsample_num-1）
+        # カイ二乗分布の上側2.5%点と下側2.5%点を求める（自由度はsample_num-1）
         chi2_lower = stats.chi2.ppf(0.025, len(s)-1)
         chi2_upper = stats.chi2.ppf(0.975, len(s)-1)
         # 信頼区間の計算
@@ -67,8 +65,11 @@ for sample_num in [10, 100]:
     est_means_list.append(est_means)
     est_vars_list.append(est_vars)
 
-    print(f'母平均と標本平均の差の平均：{diff_mean_sum/len(S)}')
-    print(f'母分散と標本分散の差の平均：{diff_var_sum/len(S)}')
+    print(f'母平均と標本平均の差の分散：{diff_mean_sum/(len(S)-1)}')
+    print(f'母分散と標本分散の差の分散：{diff_var_sum/(len(S)-1)}')
+    print(f't分布の上側2.5%点{t_upper}')
+    print(f'カイ二乗分布の上側2.5%点{chi2_upper}')
+    print(f'カイ二乗分布の下側2.5%点{chi2_lower}')
     print(f'信頼区間に母平均が入る確率：{count_mean/len(S)}')
     print(f'信頼区間に母分散が入る確率：{count_var/len(S)}')
     print()
