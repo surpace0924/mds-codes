@@ -28,13 +28,19 @@ for i, node in enumerate(nodes_2):
       tmp_p.update({node: (2*np.cos(i*2*np.pi/len(nodes_2)), 2*np.sin(i*2*np.pi/len(nodes_2)))})
 pos[2] = tmp_p
 
-pos[3] = {'ε': (0.0, 0.0),
-       'A': (1.0, 0.0),
-       'T': (0.0, 1.0),
-       'C': (-1.0, 0.0),
-       'G': (0.0, -1.0)}
 
 
+nodes_3 = ['A', 'AA', 'T', 'TT', 'C', 'CC', 'G', 'GG']
+tmp_p = {'ε': (0.0, 0.0)}
+for i, node in enumerate(nodes_3):
+      tmp_p.update({node: (2*np.cos(i*2*np.pi/len(nodes_3)), 2*np.sin(i*2*np.pi/len(nodes_3)))})
+pos[3] = tmp_p
+
+# pos[3] = {'ε': (0.0, 0.0),
+#        'A': (1.0, 0.0),
+#        'T': (0.0, 1.0),
+#        'C': (-1.0, 0.0),
+#        'G': (0.0, -1.0)}
 
 
 paths = ['1_debruijin.txt', '1_crochemore.txt', '2_debruijin.txt', '2_crochemore.txt']
