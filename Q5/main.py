@@ -1,6 +1,9 @@
 import random
 import numpy as np
 from scipy import stats
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 
 random.seed(42)
 
@@ -70,20 +73,23 @@ for sample_num in [10, 100]:
     print(f'信頼区間に母分散が入る確率：{count_var/len(S)}')
     print()
 
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-
 plt.style.use('default')
 sns.set()
 sns.set_style('whitegrid')
 sns.set_palette('Set1')
 
-x1 = np.random.normal(40, 10, 1000)
-x2 = np.random.normal(80, 20, 1000)
+fig = plt.figure()
+ax = fig.add_subplot(1, 1, 1)
+ax.hist([est_means_list[0], est_means_list[1]], bins=30, label=["sample number is 10","sample number is 100"])
+ax.set_xlabel('class value')
+ax.set_ylabel('frequency')
+plt.legend()
+plt.show()
 
 fig = plt.figure()
 ax = fig.add_subplot(1, 1, 1)
-ax.hist([est_means_list[0], est_means_list[1]], bins=30)
-
+ax.hist([est_vars_list[0], est_vars_list[1]], bins=30, label=["sample number is 10","sample number is 100"])
+ax.set_xlabel('class value')
+ax.set_ylabel('frequency')
+plt.legend()
 plt.show()
